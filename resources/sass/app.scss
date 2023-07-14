@@ -6,3 +6,16 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+.catalog-container {
+    background-color: rgb(216, 216, 216);
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    justify-content: center;
+}
+
+.catalog-box{
+    margin: 5px;
+}
