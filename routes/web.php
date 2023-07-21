@@ -21,4 +21,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/purchase'); 
+Route::get('/detail', function(){
+    return view('detail'); 
+}); 
+
+Route::get('/purchase', function(){
+    return view('purchase'); 
+}); 
+
+Route::view('/history','history')->name('history'); 
