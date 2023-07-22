@@ -18,17 +18,15 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">KO1212</th>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
+                            @foreach (array_slice($data, 1, -1) as $item)
+                                <td>{{$item}}</td>
+                            @endforeach
+                            <td>{{$perusahaan["nama"]}}</td>
                         </tr>
                     </tbody>
                 </table>
-
                 <div> 
-                    <button type="button" class="btn btn-primary" onclick="window.location='{{ url("/purchase") }}'">Buy</button>      
+                    <button type="button" class="btn btn-primary" onclick="window.location='{{ url("/purchase/{$data["id"]}") }}'">Buy</button>      
                 </div>
             </div>
         </div>

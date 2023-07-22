@@ -25,7 +25,6 @@ class HomeController extends Controller
     public function index()
     {
         $response = Http::get('localhost:5000/barang'); 
-        // dd($response->json()["data"]); 
         return view('home', ['data' => $response->json()["data"]]);
     }
 }

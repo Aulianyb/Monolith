@@ -5,7 +5,7 @@
 <div class="container"> 
     <div class="row justify-content-center"> 
         <div class="col-md-8"> 
-            <button type="button" class="btn btn-secondary" onclick="window.location='{{ url("/detail") }}'">Back</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location='{{ url("/detail/{$data["id"]}") }}'">Back</button>
             <h1 style="margin-top:20px">Beli Barang</h1>
             <div style="margin-top:20px">
                 <table class="table"> 
@@ -18,11 +18,10 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">KO1212</th>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
+                            @foreach (array_slice($data, 1, -1) as $item)
+                                <td>{{$item}}</td>
+                            @endforeach
+                            <td>{{$perusahaan["nama"]}}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -15,7 +15,7 @@
                             <div> 
                                 <h5 class="card-title">{{ $item["nama"] }}</h5>
                             </div>
-                            <button type="button" class="btn btn-primary btn-sm" onclick="window.location='{{ url("/detail") }}'">Detail Barang</button>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="window.location='{{ url("/detail/{$item["id"]}") }}'">Detail Barang</button>
                         </div> 
                     </div> 
                 @endforeach

@@ -21,13 +21,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/detail', function(){
-    return view('detail'); 
-}); 
+Route::get('/detail/{id}', [App\Http\Controllers\DetailController::class, 'index'])->name('detail');
 
-Route::get('/purchase', function(){
-    return view('purchase'); 
-}); 
+Route::get('/purchase/{id}', [App\Http\Controllers\PurchaseController::class, 'index'])->name('purchase');
+
 
 Route::view('/history','history')->name('history'); 
 
