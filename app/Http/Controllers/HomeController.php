@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Http;
 
 use Illuminate\Http\Request;
 
@@ -23,6 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $response = Http::get('localhost:5000/barang'); 
+        // dd($response->json()["data"]); 
+        return view('home', ['data' => $response->json()["data"]]);
     }
 }

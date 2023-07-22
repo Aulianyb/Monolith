@@ -30,3 +30,4 @@ Route::get('/purchase', function(){
 }); 
 
 Route::view('/history','history')->name('history'); 
+
