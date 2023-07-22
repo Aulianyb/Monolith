@@ -28,14 +28,17 @@
 
                 <div> 
                     <h3 style="margin-top:20px;margin-bottom:20px">Informasi Pembelian</h3>
-                    <div className="input-group">
-                        <input type="number" class="form-control" placeholder="Masukan jumlah pembelian">
-                    </div>
                     <div style="margin-top:20px;margin-bottom:20px">
-                        <h5> Jumlah Pembelian : X </h5>
-                        <h5> Total Pembelian : X </h5> 
+                        <h5> Jumlah Pembelian : {{ $jumlah }} </h5>
+                        <h5> Total Pembelian : {{ $total}} </h5> 
                     </div>
-                    <button type="button" class="btn btn-primary">Buy</button>
+                    <form method="POST" action="/form/submit">
+                        @csrf
+                        <div className="form-group">
+                            <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="Masukan jumlah pembelian">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Buy</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -25,6 +25,7 @@ Route::get('/detail/{id}', [App\Http\Controllers\DetailController::class, 'index
 
 Route::get('/purchase/{id}', [App\Http\Controllers\PurchaseController::class, 'index'])->name('purchase');
 
-
 Route::view('/history','history')->name('history'); 
+
+Route::post('/form/submit/', [App\Http\Controllers\PurchaseController::class, 'submitForm'])->name('form.submit'); 
 
