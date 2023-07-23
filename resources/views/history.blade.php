@@ -15,14 +15,25 @@
                         <th scope="col">Total</th>
                     </thead>
                     <tbody>
+                    @foreach ($data["data"] as $item)
                         <tr>
-                            <th scope="row">KO1212</th>
-                            <td>Test</td>
-                            <td>Test</td>
+                                <td>{{$item["nama"]}}</td>
+                                <td>{{$item["jumlah"]}}</td>
+                                <td>{{$item["total"]}}</td>
                         </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>

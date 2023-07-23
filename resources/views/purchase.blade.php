@@ -2,6 +2,11 @@
 @section('content')
 <head> 
 </head>
+@if(Session::has('error'))
+    <script>
+        alert("{{ Session::get('error') }}");
+    </script>
+@endif
 <div class="container"> 
     <div class="row justify-content-center"> 
         <div class="col-md-8"> 
@@ -10,10 +15,10 @@
             <div style="margin-top:20px">
                 <table class="table"> 
                     <thead>
-                        <th scope="col">Kode</th>
                         <th scope="col">Nama</th>
-                        <th scope="col">Stok</th>
                         <th scope="col">Harga</th>
+                        <th scope="col">Stok</th>
+                        <th scope="col">Kode</th>
                         <th scope="col">Perusahaan</th>
                     </thead>
                     <tbody>
@@ -35,7 +40,8 @@
                     <form method="POST" action="/form/submit">
                         @csrf
                         <div className="form-group">
-                            <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="Masukan jumlah pembelian">
+                            <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="Masukan jumlah pembelian" min=0>
+                            <input type="text" class="form-control invisible" id="barang_id" name="barang_id" value={{ $data["id"]}}>
                         </div>
                         <button type="submit" class="btn btn-primary">Buy</button>
                     </form>

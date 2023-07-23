@@ -10,10 +10,10 @@
             <div style="margin-top:20px">
                 <table class="table"> 
                     <thead>
-                        <th scope="col">Kode</th>
                         <th scope="col">Nama</th>
-                        <th scope="col">Stok</th>
                         <th scope="col">Harga</th>
+                        <th scope="col">Stok</th>
+                        <th scope="col">Kode</th>
                         <th scope="col">Perusahaan</th>
                     </thead>
                     <tbody>
