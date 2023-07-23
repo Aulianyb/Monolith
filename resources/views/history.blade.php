@@ -27,11 +27,19 @@
             </div>
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    @if ($data['prev_page_url'])
+                        <li class="page-item"><a class="page-link" href="{{$data['prev_page_url']}}">Previous</a></li>
+                    @endif
+                    @for ($i=1; $i <= $data['last_page'];$i++)
+                        @if ($data['current_page'] == $i)
+                            <li class="page-item"><a class="page-link active" href="{{$data['links'][$i]['url']}}">{{$i}}</a></li>
+                        @else
+                            <li class="page-item"><a class="page-link" href="{{$data['links'][$i]['url']}}">{{$i}}</a></li>
+                        @endif
+                    @endfor
+                    @if ($data['next_page_url'])
+                        <li class="page-item"><a class="page-link" href="{{$data['next_page_url']}}">Next</a></li>
+                    @endif
                 </ul>
             </nav>
         </div>

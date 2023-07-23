@@ -40,7 +40,7 @@
                     <form method="POST" action="/form/submit">
                         @csrf
                         <div className="form-group">
-                            <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="Masukan jumlah pembelian" min=0>
+                            <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="Masukan jumlah pembelian" min=1>
                             <input type="text" class="form-control invisible" id="barang_id" name="barang_id" value={{ $data["id"]}}>
                         </div>
                         <button type="submit" class="btn btn-primary">Buy</button>

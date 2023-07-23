@@ -38,6 +38,7 @@ class PurchaseController extends Controller
                 'perusahaan_id' => $perusahaan_id, 
                 'kode' => $kode
             ]);
+            session()->flash('success', "Pembelian {$nama} sebanyak {$jumlah} dengan total {$total} telah berhasil!");
             return redirect('/home'); 
         } 
     }

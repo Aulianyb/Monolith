@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Http;
-
+use Illuminate\Support\Collection; 
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,6 +25,9 @@ class HomeController extends Controller
     public function index()
     {
         $response = Http::get('localhost:5000/barang'); 
+        $data = $response->json()["data"]; 
+        $collection = new Collection($data);
+        // dd($collection); 
         return view('home', ['data' => $response->json()["data"]]);
     }
 }
