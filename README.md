@@ -1,1 +1,2 @@
-# Temp
+# Monolith
+repositori untuk monolith
