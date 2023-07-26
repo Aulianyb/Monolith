@@ -19,13 +19,5 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/detail/{id}', [App\Http\Controllers\DetailController::class, 'index'])->name('detail');
-
-Route::get('/purchase/{id}', [App\Http\Controllers\PurchaseController::class, 'index'])->name('purchase');
-
-Route::get('/history', [App\Http\Controllers\HistoryController::class, 'index'])->name('history');
-
-Route::post('/form/submit/', [App\Http\Controllers\PurchaseController::class, 'submitForm'])->name('form.submit'); 
+Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'index'])->name('login');
 

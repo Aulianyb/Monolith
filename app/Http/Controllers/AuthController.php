@@ -8,9 +8,12 @@ use Illuminate\Support\Facades\Cookie;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response; 
+use App\Providers\RouteServiceProvider;
 
 class AuthController extends Controller
 {
+
+
     public function register(Request $request)
     {
         return User::create([
@@ -19,6 +22,8 @@ class AuthController extends Controller
             'password' => Hash::make($request->input('password'))
         ]); 
     }
+
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     public function login(Request $request)
     {
@@ -30,22 +35,18 @@ class AuthController extends Controller
 
         $user = Auth::user(); 
         $token = $user->createToken('token')->plainTextToken; 
-        $cookie = cookie('jwt', $token); 
+        $cookie = cookie('jwt', $token, 24*60); 
         
-        return response([
-            'message' => 'Success',
-            'token' => $token
-        ])->withCookie($cookie); 
+        return redirect()->route('home')->withCookie($cookie);
     }
 
     public function logout(){
         $cookie = Cookie::forget('jwt');
-        return response([
-            'message' => 'Success logout'
-        ])->WithCookie($cookie); 
+        return redirect('/'); 
     }
 
     public function user(){
+        dd(Auth::user()); 
         return Auth::user(); 
     }
 }

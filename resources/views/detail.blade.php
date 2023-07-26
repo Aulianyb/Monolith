@@ -5,7 +5,7 @@
 <div class="container"> 
     <div class="row justify-content-center"> 
         <div class="col-md-8"> 
-            <button type="button" class="btn btn-secondary" onclick="window.location='{{ url("/home") }}'">Back</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location='{{ url("api/home") }}'">Back</button>
             <h1 style="margin-top:20px">Detail Barang</h1>
             <div style="margin-top:20px">
                 <table class="table"> 
@@ -26,7 +26,7 @@
                     </tbody>
                 </table>
                 <div> 
-                    <button type="button" class="btn btn-primary" onclick="window.location='{{ url("/purchase/{$data["id"]}") }}'">Buy</button>      
+                    <button type="button" class="btn btn-primary" onclick="window.location='{{ url("api/purchase/{$data["id"]}") }}'">Buy</button>      
                 </div>
             </div>
         </div>

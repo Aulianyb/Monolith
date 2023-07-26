@@ -11,7 +11,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h1> 
-                Katalog Barang
+                Selamat Datang! 
             </h1>
             <div class="catalog-container"> 
                 @foreach ($data as $item)
@@ -20,7 +20,7 @@
                             <div> 
                                 <h5 class="card-title">{{ $item["nama"] }}</h5>
                             </div>
-                            <button type="button" class="btn btn-primary btn-sm" onclick="window.location='{{ url("/detail/{$item["id"]}") }}'">Detail Barang</button>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="window.location='{{ url("api/detail/{$item["id"]}") }}'">Detail Barang</button>
                         </div> 
                     </div> 
                 @endforeach

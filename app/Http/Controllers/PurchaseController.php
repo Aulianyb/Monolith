@@ -39,7 +39,7 @@ class PurchaseController extends Controller
                 'kode' => $kode
             ]);
             session()->flash('success', "Pembelian {$nama} sebanyak {$jumlah} dengan total {$total} telah berhasil!");
-            return redirect('/home'); 
+            return redirect('api/home'); 
         } 
     }
     /**

@@ -19,10 +19,15 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::post('register', [App\Http\Controllers\AuthController::class, 'register']);
-Route::post('login', [App\Http\Controllers\AuthController::class, 'login']);
+Route::post('register', [App\Http\Controllers\AuthController::class, 'register'])->name('register_api');
+Route::post('login', [App\Http\Controllers\AuthController::class, 'login'])->name('login_api');
 
 Route::middleware('auth:sanctum')->group(function(){
-    Route::get('user', [App\Http\Controllers\AuthController::class, 'user']);
-    Route::post('logout', [App\Http\Controllers\AuthController::class, 'logout']);
+    Route::get('user', [App\Http\Controllers\AuthController::class, 'user'])->name('user');
+    Route::post('logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout_api');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/detail/{id}', [App\Http\Controllers\DetailController::class, 'index'])->name('detail');
+    Route::get('/purchase/{id}', [App\Http\Controllers\PurchaseController::class, 'index'])->name('purchase');
+    Route::get('/history', [App\Http\Controllers\HistoryController::class, 'index'])->name('history');
+    Route::post('/form/submit/', [App\Http\Controllers\PurchaseController::class, 'submitForm'])->name('form.submit'); 
 }); 
