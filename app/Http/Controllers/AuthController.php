@@ -8,29 +8,44 @@ use Illuminate\Support\Facades\Cookie;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response; 
-use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
 
 
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+    }
+    
     public function register(Request $request)
     {
-        return User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password'))
-        ]); 
-    }
+        $data = $request->all(); 
+        $validator = $this->validator($data);
 
-    protected $redirectTo = RouteServiceProvider::HOME;
+        if ($validator->fails()){
+            return view('auth\register')->withErrors($validator);
+        } else {
+            $user = User::create([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password'))
+            ]); 
+            return $this->login($request);
+        }
+    }
 
     public function login(Request $request)
     {
         if (!Auth::attempt($request->only('email','password'))){
-            return response([
-                'message' => 'Invalid Credentials!'
-            ], Response::HTTP_UNAUTHORIZED); 
+            return view('auth\login')->withErrors([
+                'email' => 'Invalid email or password.',
+            ]);
         }
 
         $user = Auth::user(); 
@@ -48,5 +63,17 @@ class AuthController extends Controller
     public function user(){
         dd(Auth::user()); 
         return Auth::user(); 
+    }
+
+    public function register_index()
+    {
+        $validator = Validator::make([], []);
+        return view('auth\register')->withErrors($validator); 
+    }
+
+    public function login_index()
+    {
+        $validator = Validator::make([], []);
+        return view('auth\login')->withErrors($validator); 
     }
 }

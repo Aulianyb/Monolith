@@ -31,13 +31,11 @@
                         </tr>
                     </tbody>
                 </table>
-
+                @error('message')
+                <p style="color:red"><i> {{$message}} </i></p>
+                @enderror
                 <div> 
                     <h3 style="margin-top:20px;margin-bottom:20px">Informasi Pembelian</h3>
-                    <div style="margin-top:20px;margin-bottom:20px">
-                        <h5> Jumlah Pembelian : {{ $jumlah }} </h5>
-                        <h5> Total Pembelian : {{ $total}} </h5> 
-                    </div>
                     <form method="POST" action="{{ route('form.submit')}}">
                         @csrf
                         <div className="form-group">

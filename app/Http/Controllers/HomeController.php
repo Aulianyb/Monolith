@@ -28,7 +28,7 @@ class HomeController extends Controller
         $response = Http::get('localhost:5000/barang'); 
         $data = $response->json()["data"]; 
         $collection = new Collection($data);
-        $username = Auth::user(); 
-        return view('home', ['data' => $response->json()["data"]]);
+        $username = Auth::user()->name; 
+        return view('home', ['data' => $response->json()["data"], 'username' => $username]);
     }
 }

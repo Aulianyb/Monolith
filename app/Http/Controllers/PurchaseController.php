@@ -16,8 +16,14 @@ class PurchaseController extends Controller
         $response = Http::get("localhost:5000/barang/{$id}"); 
         $stok = $response->json()["data"]["stok"];
         if($jumlah > $stok){
-            Session::flash('error', 'Jumlah yang dibeli lebih banyak daripada stok!');
-            return redirect()->back();
+            $response = Http::get("localhost:5000/barang/{$id}"); 
+            $perusahaan = Http::get("localhost:5000/perusahaan/{$response["data"]["perusahaan_id"]}");
+            return view('purchase', 
+            ['data' => $response["data"], 
+            'perusahaan' => $perusahaan["data"]]
+            )->withErrors([
+                'message' => 'Jumlah yang dimasukkan harus lebih kurang atau sama dengan stok!',
+            ]);
         } else{
             $nama = $response->json()["data"]["nama"]; 
             $harga = $response->json()["data"]["harga"];
@@ -39,7 +45,7 @@ class PurchaseController extends Controller
                 'kode' => $kode
             ]);
             session()->flash('success', "Pembelian {$nama} sebanyak {$jumlah} dengan total {$total} telah berhasil!");
-            return redirect('api/home'); 
+            return redirect("api/success/{$nama}/{$total}/{$jumlah}"); 
         } 
     }
     /**
@@ -51,12 +57,16 @@ class PurchaseController extends Controller
     {
         $response = Http::get("localhost:5000/barang/{$id}"); 
         $perusahaan = Http::get("localhost:5000/perusahaan/{$response["data"]["perusahaan_id"]}");
-
         return view('purchase', 
         ['data' => $response["data"], 
-        'perusahaan' => $perusahaan["data"], 
-        'jumlah' => 0, 
-        'total' => 0]
-        );
+        'perusahaan' => $perusahaan["data"]]
+        )->withErrors([
+            'message' => '',
+        ]);
+    }
+
+    public function success_page($nama, $total, $jumlah)
+    {
+        return view('success',['total' => $total, 'jumlah' => $jumlah, 'nama' => $nama]); 
     }
 }

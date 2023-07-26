@@ -12,7 +12,7 @@ class HistoryController extends Controller
     public function index()
     {
         $id = Auth::user()->id;
-        $data = History::where('user_id', $id)->paginate(2);    
+        $data = History::where('user_id', $id)->paginate(10);    
         $array = $data->toArray(); 
         // dd($array); 
         return view('history', ['data' => $array]);

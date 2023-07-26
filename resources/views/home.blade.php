@@ -11,7 +11,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h1> 
-                Selamat Datang! 
+                Selamat Datang, {{$username}}!
             </h1>
             <div class="catalog-container"> 
                 @foreach ($data as $item)
