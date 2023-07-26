@@ -25,6 +25,17 @@
                     </div> 
                 @endforeach
             </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                @if ($previousPageUrl)
+                    <li class="page-item"><a class="page-link" href="{{ url('api/home') . $previousPageUrl }}">Previous</a></li>
+                @endif
+
+                @if ($nextPageUrl)
+                    <li class="page-item"><a class="page-link" href="{{ url('api/home') . $nextPageUrl }}">Next</a></li>
+                @endif
+                </ul>
+            </nav>
         </div>
     </div>
 </div>
