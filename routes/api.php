@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('register', [App\Http\Controllers\AuthController::class, 'register_index'])->name('register_view');
 Route::post('register', [App\Http\Controllers\AuthController::class, 'register'])->name('register_api');
 Route::post('login', [App\Http\Controllers\AuthController::class, 'login'])->name('login_api');
-Route::get('/login', [App\Http\Controllers\AuthController::class, 'login_index'])->name('login');
+Route::get('/login', [App\Http\Controllers\AuthController::class, 'login_index'])->name('login_view');
 
 
 Route::middleware('auth:sanctum')->group(function(){
