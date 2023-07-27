@@ -48,13 +48,20 @@ class HomeController extends Controller
 
         $page = $request->query('page', 1);
 
-        $paginated = $this->paginate($data, 2, $page);  
+        $paginated = $this->paginate($data, 6, $page);  
         $nextPageUrl = $paginated->nextPageUrl(); 
         $previousPageUrl = $paginated->previousPageUrl();
         $items = $paginated->items();   
+        $current_page = $page; 
 
-        // dd($paginated->previousUrlPage);
+        // dd($paginated->lastpage());
         $username = Auth::user()->name; 
-        return view('home', ['data' => $items, 'username' => $username, 'nextPageUrl' => $nextPageUrl, 'previousPageUrl' => $previousPageUrl]);
+        return view('home', ['data' => $items, 
+        'username' => $username, 
+        'nextPageUrl' => $nextPageUrl, 
+        'previousPageUrl' => $previousPageUrl,
+        'paginated' => $paginated, 
+        'current_page' => $current_page]);
+
     }
 }
