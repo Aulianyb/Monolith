@@ -5,6 +5,14 @@ NIM : 18221066 <br />
 ## Cara Menjalankan 
 
 ## Design Pattern
+### Singleton
+Singleton dilakukan pada Validator yang ada pada AuthController, khususnya yang digunakan pada fungsi register. Design pattern ini dipilih supaya aplikasi tidak perlu mendefinisikan ulang validator yang digunakan pada register page, sehingga variabel validator yang sama dapat digunakan saat pengguna pertama kali melakukan loading page dan setelah pengguna melakukan submit dalam form register. 
+
+### Chain of Responsibilities
+COR dilakukan pada operasi Authentication, khususnya ketika pengguna melakukan registrasi. Ketika pengguna melakukan submit form register, data harus pertama kali melalui fungsi validator, yang akan melakukan pengecekan terhadap seluruh data yang dimasukkan. Data akan dilanjutkan kepada fungsi yang memasukkan akun pengguna ke dalam database dan terakhir setelah data pengguna berhasil dimasukkan maka akan dilanjutkan kepada fungsi login yang dapat mengarahkan pengguna ke homepage. 
+
+### Proxy
+Design pattern ini memungkinkan pengguna untuk melakukan operasi sebelum berinteraksi secara langsung kepada database. Proxy diterapkan kepada controller, contohnya controller purchase yang akan memastikan bahwa data yang dimasukkan oleh pengguna valid sebelum berinteraksi dengan database. 
 
 ## Technology Stack
 1. Framework Laravel v10.15.0
