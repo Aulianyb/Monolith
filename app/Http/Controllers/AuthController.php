@@ -77,10 +77,7 @@ class AuthController extends Controller
 
     public function login_index()
     {
-        app()->singleton('userValidator', function($app){
-            return $validator = Validator::make([], []);
-        }); 
-        
+        $validator = Validator::make([], []);
         return view('auth\login')->withErrors($validator); 
     }
 }
