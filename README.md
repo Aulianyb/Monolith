@@ -116,3 +116,10 @@ Design pattern ini memungkinkan pengguna untuk melakukan operasi sebelum berinte
 ## Bonus
 ### B06 Responsive Layout
 Layout dari monolith akan menyesuaikan sesuai dengan ukuran layar
+
+### B08 SOLID
+#### Single Responsibility Principle : 
+Setiap controller hanya bertanggung jawab untuk handle operasi yang ada di view yang memiliki nama yang sama dengannya. 
+
+#### Dependency Inversion Principle : 
+Kita tidak mendefinisikan database pada controller, tetapi menggunakan abstraksi yang memungkinkan kita untuk berinteraksi dengan database yang kita miliki. 
