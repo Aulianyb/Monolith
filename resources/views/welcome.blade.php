@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Monolith</title>
+        <title>SesajenMart</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -32,7 +32,7 @@
 
             <div class="max-w-7xl mx-auto p-6 lg:p-8">
                 <div class="justify-center">
-                    <h1 class="title">BondowosoMart</h1>
+                    <h1 class="title">SesajenMart</h1>
                     <h2 class="subtitle">by Aulia Nadhirah Yasmin B 18221066</h2>
                 </div>
 

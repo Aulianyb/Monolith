@@ -26,10 +26,12 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $data = $request->all(); 
-        $validator = $this->validator($data);
+        // $validator = $this->validator($data);
 
-        if ($validator->fails()){
-            return view('auth\register')->withErrors($validator);
+        app()->instance('registerValidator', $this->validator($data));
+
+        if (app('registerValidator')->fails()){
+            return view('auth\register')->withErrors(app('registerValidator'));
         } else {
             $user = User::create([
                 'name' => $request->input('name'),
@@ -67,13 +69,18 @@ class AuthController extends Controller
 
     public function register_index()
     {
-        $validator = Validator::make([], []);
-        return view('auth\register')->withErrors($validator); 
+        app()->singleton('registerValidator', function($app){
+            return $validator = Validator::make([], []);
+        }); 
+        return view('auth\register')->withErrors(app('registerValidator')); 
     }
 
     public function login_index()
     {
-        $validator = Validator::make([], []);
+        app()->singleton('userValidator', function($app){
+            return $validator = Validator::make([], []);
+        }); 
+        
         return view('auth\login')->withErrors($validator); 
     }
 }
