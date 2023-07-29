@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Models\History; 
+use Laravel\Sanctum\PersonalAccessToken;
 
 class PurchaseController extends Controller
 {
@@ -15,6 +16,12 @@ class PurchaseController extends Controller
         $id = $request->input('barang_id'); 
         $response = Http::get("localhost:5000/barang/{$id}"); 
         $stok = $response->json()["data"]["stok"];
+        $token=$request->cookie('jwt'); 
+        $yourtoken = PersonalAccessToken::findToken($token);
+        if (!Auth::user()->is($yourtoken->tokenable)){
+            echo "<h1 align='center' style='color:red'>Token yang salah!</h1>";
+            redirect("/"); 
+        }
         if($jumlah > $stok){
             $response = Http::get("localhost:5000/barang/{$id}"); 
             $perusahaan = Http::get("localhost:5000/perusahaan/{$response["data"]["perusahaan_id"]}");
@@ -37,14 +44,13 @@ class PurchaseController extends Controller
             $history->jumlah = $jumlah;
             $history->total = $total;  
             $history->save(); 
-            $response= Http::put("localhost:5000/barang/{$id}",[
+            $response= Http::put("localhost:5000/purchase/{$id}",[
                 'nama' => $nama,
                 'harga' => $harga, 
                 'stok' => $stok - $jumlah, 
                 'perusahaan_id' => $perusahaan_id, 
                 'kode' => $kode
             ]);
-            session()->flash('success', "Pembelian {$nama} sebanyak {$jumlah} dengan total {$total} telah berhasil!");
             return redirect("api/success/{$nama}/{$total}/{$jumlah}"); 
         } 
     }

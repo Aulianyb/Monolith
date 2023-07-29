@@ -63,7 +63,6 @@ class AuthController extends Controller
     }
 
     public function user(){
-        dd(Auth::user()); 
         return Auth::user(); 
     }
 
