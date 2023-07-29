@@ -3,6 +3,47 @@ Nama : Aulia Nadhirah Yasmin Badrulkamal <br />
 NIM : 18221066 <br />
 
 ## Cara Menjalankan 
+⚠ Disclaimer : saya tidak bisa uji coba docker di mesin saya karena tidak cukup memory. Sudah di coba beberapa kali dan selalu menghabiskan memori yang ada di drive C saya sehingga mengakibatkan docker error dan harus di factory reset beberapa kali. Jadi alternatif yang bisa diberikan adalah menjalankannya secara lokal.
+
+![image](https://github.com/Aulianyb/Monolith/assets/42485997/5a19cf1b-2e3b-439f-b88f-6ba850874422)
+
+![image](https://github.com/Aulianyb/Monolith/assets/42485997/4cef6648-372a-4528-a2ed-b4e7e98d067a)
+
+#### Requirements
+1. PHP v8.2.8
+2. mysql  Ver 8.0.30 for Win64 on x86_64 (MySQL Community Server - GPL)
+3. npm v9.6.6
+4. Composer version 2.5.8
+5. A working single service backend on port 5000
+
+#### How to run
+1. Clone this repository
+2. Run `composer i` on root
+3. Run `npm install` on root to install dependencies
+4. Create file `.env` and paste the contents of `.env.example`
+5. Run `php artisan key:generate` on root
+6. Login into mysql and create a database by running `CREATE DATABASE data;`
+7. Make sure that : 
+    - DB_CONNECTION=mysql
+    - DB_HOST=localhost
+    - DB_PORT=3306
+    - DB_DATABASE=data
+    - DB_USERNAME=`the username of the mysql server, typically "root"`
+    - DB_PASSWORD=`the password of the mysql server`
+8. run `php artisan jwt:secret` on root
+9. run `php artisan migrate` to migrate the models into the database
+10. run `php artisan db:seed` to seed the database
+11. run `npm run dev`
+12. run `php artisan serve` on another terminal and use the port to open the website, typically it's `http://127.0.0.1:8000/`
+
+From here, you can register a new user or use the user that's inserted during seeding. From the seeding there are two user you can use : Roro and Bondowoso
+#### Bondowoso
+Email : Bondowoso@gmail.com <br />
+Password : password123
+
+#### Roro
+Email : Roro@gmail.com <br />
+Password : password123
 
 ## Design Pattern
 ### Singleton
@@ -18,6 +59,8 @@ Design pattern ini memungkinkan pengguna untuk melakukan operasi sebelum berinte
 1. Framework Laravel v10.15.0
 2. PHP v8.2.8
 3. mysql  Ver 8.0.30 for Win64 on x86_64 (MySQL Community Server - GPL)
+4. npm v9.6.6
+5. Composer version 2.5.8
 
 ## End Point
 ### GET login view (GET request)
