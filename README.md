@@ -114,3 +114,5 @@ Design pattern ini memungkinkan pengguna untuk melakukan operasi sebelum berinte
 - Can only be accessed if the user is logged in
 - Response : History  View
 ## Bonus
+### B06 Responsive Layout
+Layout dari monolith akan menyesuaikan sesuai dengan ukuran layar
